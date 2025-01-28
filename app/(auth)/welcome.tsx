@@ -27,9 +27,9 @@ const Home = () => {
       <Swiper
         ref={swiperRef}
         loop={false}
-        dot={<View className="w-[35px] h-[7px] mx-1 bg-[#E2E8F0] " />}
+        dot={<View className="w-[35px] h-[5px] mx-1 bg-[#E2E8F0] rounded-xl" />}
         activeDot={
-          <View className="w-[35px] h-[7px] mx-1 bg-[#0286FF] rounded-full" />
+          <View className="w-[35px] h-[5px] mx-1 bg-[#0286FF] rounded-full" />
         }
         onIndexChanged={(index) => setActiveIndex(index)}
       >
@@ -37,7 +37,7 @@ const Home = () => {
           <View key={item.id} className="flex items-center justify-center p-5">
             <Image
               source={item.image}
-              style={{ width: "100%", height: 300 }}
+              className="w-full h-[300px]"
               resizeMode="contain"
             />
             <View className="flex flex-row items-center justify-center w-full mt-10">
@@ -59,7 +59,7 @@ const Home = () => {
             ? router.replace("/(auth)/sign-up")
             : swiperRef.current?.scrollBy(1)
         }
-        className="w-11/12 mt-10 mb-5"
+        className="w-10/12 mt-10 mb-5"
       />
     </SafeAreaView>
   );

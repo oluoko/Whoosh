@@ -31,17 +31,13 @@ const InputField = ({
             {label}
           </Text>
           <View
-            className={`flex flex-row justify-start items-center relative bg-neutral-100 rounded-full border border-neutral-100 focus:border-primary-500 ${containerStyle}`}
+            className={`flex flex-row justify-start items-center relative bg-neutral-100 rounded-full border-[1px] border-gray-500/60 focus:border-primary-500 ${containerStyle}`}
           >
             {icon && (
-              <Image
-                source={icon}
-                className={`${iconStyle}`}
-                style={{ width: 25, height: 25, marginLeft: 16 }}
-              />
+              <Image source={icon} className={`size-6  ml-4 ${iconStyle}`} />
             )}
             <TextInput
-              className={`rounded-full p-4 font-JakartaSemiBold text-[15px] flex-1 text-left outline-none ${inputStyle}`}
+              className={`rounded-full p-4 font-JakartaSemiBold text-[15px] flex-1 text-left  ${inputStyle}`}
               secureTextEntry={secureTextEntry}
               {...props}
             />
