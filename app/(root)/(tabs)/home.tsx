@@ -23,7 +23,7 @@ const Home = () => {
   };
 
   return (
-    <SafeAreaView className="flex h-full items-center justify-center bg-white">
+    <SafeAreaView className="flex h-full items-center justify-center bg-white p-2">
       <SignedIn>
         <View className="flex items-center justify-center h-full w-full">
           <Text>Hello, {user?.emailAddresses[0].emailAddress}</Text>
