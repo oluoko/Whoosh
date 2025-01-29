@@ -57,10 +57,10 @@ export default function Layout() {
         tabBarStyle: {
           backgroundColor: "#333333",
           borderRadius: 50,
-
           marginHorizontal: 20,
           marginBottom: 20,
           height: 70,
+          position: "absolute",
         },
       }}
     >
