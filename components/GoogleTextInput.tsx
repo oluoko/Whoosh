@@ -1,6 +1,5 @@
 import { View, Image } from "react-native";
 import "react-native-get-random-values";
-import { v4 as uuidv4 } from "uuid";
 import React from "react";
 import { GoogleInputProps } from "@/types/type";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
@@ -72,7 +71,7 @@ const GoogleTextInput = ({
         )}
         textInputProps={{
           placeholderTextColor: "gray",
-          placeholder: "Where do you want to go?",
+          placeholder: initialLocation ?? "Where do you want to go?",
         }}
       />
     </View>

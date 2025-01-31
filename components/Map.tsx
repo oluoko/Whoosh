@@ -72,8 +72,8 @@ const Map = () => {
 
       const newMarkers = generateMarkersFromData({
         data: drivers,
-        userLongitude,
         userLatitude,
+        userLongitude,
       });
 
       setMarkers(newMarkers);
