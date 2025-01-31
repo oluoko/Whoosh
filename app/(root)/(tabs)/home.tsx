@@ -7,12 +7,15 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { SignedIn, SignedOut, useClerk, useUser } from "@clerk/clerk-expo";
+import { useClerk, useUser } from "@clerk/clerk-expo";
 import { Link, useRouter } from "expo-router";
 import RideCard from "@/components/RideCard";
 import { icons, images } from "@/constants";
 import GoogleTextInput from "@/components/GoogleTextInput";
 import Map from "@/components/Map";
+import { useLocationStore } from "@/store";
+import { useEffect, useState } from "react";
+import * as Location from "expo-location";
 
 const recentRides = [
   {
@@ -123,6 +126,10 @@ const recentRides = [
 
 const Home = () => {
   const { user } = useUser();
+
+  const { setUserLocation, setDestinationLocation } = useLocationStore();
+  const [hasPermission, setHasPermission] = useState(false);
+
   const loading = true;
 
   const router = useRouter();
@@ -141,6 +148,34 @@ const Home = () => {
   };
 
   const handleDestinationPress = (destination) => {};
+
+  useEffect(() => {
+    const requestLocation = async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+
+      if (status !== "granted") {
+        setHasPermission(false);
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync();
+
+      let address = await Location.reverseGeocodeAsync({
+        latitude: location.coords?.latitude!,
+        longitude: location.coords?.longitude!,
+      });
+
+      setUserLocation({
+        latitude: 37.78825,
+        longitude: -122.4324,
+        // latitude: location.coords.latitude,
+        // longitude: location.coords.longitude,
+        address: `${address[0].name}, ${address[0].region}`,
+      });
+    };
+
+    requestLocation();
+  }, []);
   return (
     <SafeAreaView className=" bg-general-500">
       <FlatList
@@ -203,7 +238,7 @@ const Home = () => {
               <Text className="text-xl font-JakartaBold my-3">
                 Your Current Location
               </Text>
-              <View className="flex flex-row items-center bg-transparent size-[310px] border border-general-200 rounded-2xl overflow-hidden">
+              <View className="flex flex-row items-center bg-transparent w-full h-[95vw] border border-general-200 rounded-2xl overflow-hidden">
                 <Map />
               </View>
             </>
